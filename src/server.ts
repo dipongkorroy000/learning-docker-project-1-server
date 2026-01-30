@@ -1,6 +1,8 @@
 import {Server} from "http";
 import app from "./app";
 import {errorLogger, logger} from "./app/src/shared/logger";
+import dotenv from "dotenv";
+dotenv.config();
 
 let server: Server;
 

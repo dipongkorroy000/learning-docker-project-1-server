@@ -11,10 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^25.1.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",

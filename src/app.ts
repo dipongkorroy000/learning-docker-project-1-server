@@ -2,14 +2,23 @@ import express, {Application, Request, Response} from "express";
 import path from "path";
 import {LogsRoutes} from "./app/src/modules/logs/logs.routes";
 import {errorLogger} from "./app/src/shared/logger";
+import cors from "cors";
 
 const app: Application = express();
 
 // Serve static files like CSS
 app.use(express.static(path.join(__dirname, "../public"))); // Adjusted path
 
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
+
 // Parsers
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Welcome route
 app.get("/", (req: Request, res: Response) => {
@@ -25,6 +34,13 @@ app.get("/", (req: Request, res: Response) => {
       </body>
     </html>
   `);
+});
+
+app.get("/todos", async (req: Request, res: Response) => {
+  const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+  // const response = await fetch("http://ts-docker-container:5000/api/v1/users");
+  const todos = await response.json();
+  return res.status(200).json(todos);
 });
 
 app.get("/error", (req: Request, res: Response) => {
