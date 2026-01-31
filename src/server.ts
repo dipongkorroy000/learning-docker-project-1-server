@@ -13,12 +13,15 @@ let server: Server;
 async function main() {
   try {
     // Connect MongoDB
+    // await mongoose.connect(config.mongo_database_url as string);
+    // logger.info("✅ Connected to MongoDB atlas");
+
     await mongoose.connect(config.mongo_container_database_url as string);
-    logger.info("✅ Connected to MongoDB");
+    logger.info("✅ Connected to MongoDB container");
 
     // Connect PostgreSQL
     // await pgPool.connect();
-    //  logger.info("✅ Connected to PostgreSQL");
+    //  logger.info("✅ Connected to PostgreSQL local desk");
 
     server = app.listen(config.port, () => {
       console.log(`app is listening on port ${config.port}`);
